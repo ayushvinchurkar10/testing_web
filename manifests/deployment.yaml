@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-testing
+  labels:
+    app: demo-testing
+    kubernetes.azure.com/generator: devhub
+  namespace: testing-aks
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-testing
+  template:
+    metadata:
+      labels:
+        app: demo-testing
+    spec:
+      containers:
+        - name: demo-testing
+          image: demostoragedroot.azurecr.io/demo-1716813100999:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
